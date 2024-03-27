@@ -14,7 +14,6 @@ namespace CedPases_ObtenerTokenBCRA.RN
 
         public string ObtenerStringTokenBcraArchivo()
         {
-            Console.WriteLine("");
             string path = Directory.GetFiles(m_sesion.TokenBcra)[0];
 
             return File.ReadAllText(path);

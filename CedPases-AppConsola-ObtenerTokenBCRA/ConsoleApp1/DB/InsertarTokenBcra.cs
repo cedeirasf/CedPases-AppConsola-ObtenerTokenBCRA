@@ -19,7 +19,7 @@ namespace CedPases_ObtenerTokenBCRA.DB
             StringBuilder a = new StringBuilder();
             a.AppendLine("UPDATE Parm SET ValorStr = @ValorStr WHERE IdParm = 'TokenBcra'");
 
-            SqlCommand sqlCmd = new SqlCommand();
+            SqlCommand sqlCmd = new SqlCommand(a.ToString());
             sqlCmd.Parameters.AddWithValue("@ValorStr", tokenBcra);
 
             return (DataSet)Ejecutar(sqlCmd, TipoRetorno.DS, Transaccion.NoAcepta);
