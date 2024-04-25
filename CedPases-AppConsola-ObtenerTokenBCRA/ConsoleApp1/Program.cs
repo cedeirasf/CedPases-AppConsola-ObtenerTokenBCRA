@@ -23,8 +23,11 @@ class Program
         string servernameDBEnv = ConfigurationManager.AppSettings["ServernameDBEnv"];
         string instancenameDBEnv = ConfigurationManager.AppSettings["InstancenameDBEnv"];
         string nameDBEnv = ConfigurationManager.AppSettings["NameDBEnv"];
+        string semilla = ConfigurationManager.AppSettings["Semilla"];
+        string llave = ConfigurationManager.AppSettings["Llave"];
+        string dominioAD = ConfigurationManager.AppSettings["DominioAD"];
 
-        sesion.CnnStr = string.Format("Server={2}\\{3};Database={4};Trusted_Connection=false;user id={0};password={1};", usuarioDBEnv, passwordDBEnv, servernameDBEnv, instancenameDBEnv, nameDBEnv);
+        sesion.CnnStr = string.Format("Server={2}\\{3};Database={4};Trusted_Connection=false;user id={0};password={1};", usuarioDBEnv, passwordDBEnv, servernameDBEnv, instancenameDBEnv, nameDBEnv, semilla, llave, dominioAD);
 
         return sesion;
     }
