@@ -12,6 +12,7 @@ namespace CedPases_ObtenerTokenBCRA.Entidades
         private string ambiente;
         private string tokenBcra;
         private string cnnStr;
+        private string archivoBcra;
 
         public Sesion()
         {
@@ -48,6 +49,17 @@ namespace CedPases_ObtenerTokenBCRA.Entidades
             set
             {
                 cnnStr = value;
+            }
+        }
+        public string ArchivoBcra
+        {
+            get
+            {
+                return archivoBcra;
+            }
+            set
+            {
+                archivoBcra = value;
             }
         }
     }

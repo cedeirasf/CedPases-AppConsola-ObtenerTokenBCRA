@@ -8,7 +8,16 @@ class Program
 {
     static int Main(string[] args)
     {
-        return new ObtenerTokenBcra(CrearSesion()).InsertarTokenBcra();
+        CedPases_ObtenerTokenBCRA.Entidades.Sesion sesion = CrearSesion();
+        if (sesion != null)
+        {
+            return new ObtenerTokenBcra(sesion).InsertarTokenBcra();
+        }
+        else
+        {
+            Console.WriteLine("Error: No se pudo conectar a la base de datos");
+            return 1;
+        }
     }
 
     private static CedPases_ObtenerTokenBCRA.Entidades.Sesion CrearSesion()
@@ -17,18 +26,22 @@ class Program
         CedPases_ObtenerTokenBCRA.Entidades.Sesion sesion = new CedPases_ObtenerTokenBCRA.Entidades.Sesion();
         sesion.Ambiente = ConfigurationManager.AppSettings["Ambiente"];
         sesion.TokenBcra = ConfigurationManager.AppSettings["TokenBcra"];
+        sesion.ArchivoBcra = ConfigurationManager.AppSettings["ArchivoBcra"];
 
         string usuarioDBEnv = ConfigurationManager.AppSettings["UsuarioDBEnv"];
         string passwordDBEnv = ConfigurationManager.AppSettings["PasswordDBEnv"];
         string servernameDBEnv = ConfigurationManager.AppSettings["ServernameDBEnv"];
         string nameDBEnv = ConfigurationManager.AppSettings["NameDBEnv"];
 
-        //CON USUARIO SQL
-        sesion.CnnStr = string.Format("Server={2}\\{3};Database={4};Trusted_Connection=false;user id={0};password={1};", usuarioDBEnv, passwordDBEnv, servernameDBEnv, nameDBEnv);
-
-        //CON SEG INTEGRADA
-        sesion.CnnStr = string.Format("Server={2};Database={3};Trusted_Connection=false;Integrated Security=SSPI;", usuarioDBEnv, passwordDBEnv, servernameDBEnv, nameDBEnv);
-
-        return sesion;
+        try
+        {
+            sesion.CnnStr = string.Format("Server={2};Database={3};Trusted_Connection=false;Integrated Security=SSPI;", usuarioDBEnv, passwordDBEnv, servernameDBEnv, nameDBEnv);
+            return sesion;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error al crear la cadena de conexión a la base de datos: " + ex.Message);
+            return null;
+        }
     }
 }
