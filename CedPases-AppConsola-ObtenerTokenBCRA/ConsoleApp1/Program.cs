@@ -24,7 +24,6 @@ class Program
     {
         Console.WriteLine(string.Format("{0}--->{1}", DateTime.Now.ToString("HH:mm:ss"), System.Reflection.MethodBase.GetCurrentMethod().Name));
         CedPases_ObtenerTokenBCRA.Entidades.Sesion sesion = new CedPases_ObtenerTokenBCRA.Entidades.Sesion();
-        sesion.Ambiente = ConfigurationManager.AppSettings["Ambiente"];
         sesion.TokenBcra = ConfigurationManager.AppSettings["TokenBcra"];
         sesion.ArchivoBcra = ConfigurationManager.AppSettings["ArchivoBcra"];
 
