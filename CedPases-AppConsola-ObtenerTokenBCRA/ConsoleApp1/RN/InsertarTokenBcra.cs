@@ -15,10 +15,14 @@ namespace CedPases_ObtenerTokenBCRA.RN
         public string ObtenerStringTokenBcraArchivo()
         {
             string lineaArchivo = "";
-            string archivoBcra = m_sesion.ArchivoBcra; 
             string directorioTokenBcra = m_sesion.TokenBcra;
+            string archivoBcra = m_sesion.ArchivoBcra;
 
-            System.IO.StreamReader fs = new System.IO.StreamReader(Path.Combine(archivoBcra, directorioTokenBcra));
+            string path = Path.Combine(directorioTokenBcra, archivoBcra);
+
+            Console.WriteLine(path);
+
+            System.IO.StreamReader fs = new System.IO.StreamReader(path);
 
             while (!fs.EndOfStream)
             {
