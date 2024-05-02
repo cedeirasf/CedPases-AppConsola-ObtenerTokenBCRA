@@ -26,7 +26,6 @@ namespace CedPases_ObtenerTokenBCRA.RN
                 Console.WriteLine(linea);
                 lineaArchivo = linea;
             }
-            Console.WriteLine(lineaArchivo);
 
             fs.Close();
             fs = null;
